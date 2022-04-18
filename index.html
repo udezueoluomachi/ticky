@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="keywords" content="Udezue Oluomachi Chimaobi, Basil Chimaobi , Udezue Oluomachi , Ticky , Udezue Oluomachi Projects , Tic-tac-toe game , tic-tac-toe with html css and javascript , Multiplayer tic-tac-toe game, multiplayer game using html css and javascript , nodejs projects"/>
+        <meta name="description" content="Ticky is a tic-tac-toe gaming platform created by Udezue Oluomachi Chimaobi using HTML , CSS , JAVASCRIPT and NODEJS. It has both a solo mode and a multiplayer feature. You can play with friends as well as on your own against the built in bot."/>
+        <title>Ticky - Play tic-tac-toe in solo mode and with friends</title>
+        <link rel="icon" href="./images/favicon.png" sizes="16x16"/>
+        <link rel="stylesheet" href="https://udezueoluomachi.github.io/Tic-Tac-Toe/animate.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        <link rel="stylesheet" href="./style/index.css"/>
+        <script type="text/javascript" src="./scripts/jquery.js"></script>
+        <script type="text/javascript" src="https://udezueoluomachi.github.io/ripplejs/ripple.js"></script>
+        <!--Add social media tags-->
+    </head>
+    <body class="deep-grey-bg">
+        <div id="body">
+            <audio id="caution">
+                <source src="https://udezueoluomachi.github.io/Tic-Tac-Toe/caution sound.wav" type="audio/wav"/>
+            </audio>
+            <audio loop="true" id="bg-sound">
+                <source src="./man-is-he-mega-glbml-22045.mp3" type="audio/mp3"/>
+            </audio>
+            <audio id="click1">
+                <source src="https://udezueoluomachi.github.io/Tic-Tac-Toe/click sound.wav" type="audio/wav"/>
+            </audio>
+            <audio id="click2">
+                <source src="https://udezueoluomachi.github.io/Tic-Tac-Toe/other click sound.wav" type="audio/wav"/>
+            </audio>
+            <audio id="win1">
+                <source src="https://udezueoluomachi.github.io/Tic-Tac-Toe/wining sound.wav" type="audio/wav"/>
+            </audio>
+            <audio id="win2">
+                <source src="https://udezueoluomachi.github.io/Tic-Tac-Toe/winning sound 2.wav" type="audio/wav"/>
+            </audio>
+            <div class="header flex-box">
+                <img src="./images/logo.png" alt="Ticky" id="logo" class="block"/>
+                <div class="score-board none">
+                    <i class="fas fa-user pink-variant-2-color"></i>
+                    <span class="white-variant-color bold x-score">0</span>
+                    <span class="white-variant-color"> : </span>
+                    <span class="white-variant-color bold o-score">0</span>
+                    <img src="./images/avatar-s.png" alt="bot"/>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/udezueoluomachi" class="white-variant-2-color block">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://facebook.com/udezueoluomachi.chimaobi" class="white-variant-2-color block">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://instagram.com/basilchimaobi2004" class="white-variant-2-color block">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/BasilChimaobi" class="white-variant-2-color block">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+            <div class="menu none">
+                <button class="quit-btn pink-variant-bg white-variant-2-color">Quit</button>
+                <button class="chat-display-toggle-btn white-variant-3-color mini-text none"><i class="fas fa-comment"></i></button>
+            </div>
+            <div class="comm-section-cont">
+                <div class="comm-section flex-box">
+                    <div class="avatar-in-comm-section-cont flex-box">
+                        <img src="./images/avatar.png" alt="Avatar" class="block avatar-in-comm-section"/>
+                    </div>
+                    <p class="avatar-greeting white-variant-2-color centered-text bold-text large-text">
+                        Hey, there!
+                    </p>
+                    <br/>
+                    <br/>
+                    <button id="start-btn" class="white-variant-color block default-green-bg mini-text green-functional-btn">
+                        Start
+                    </button>
+                    <div class="mode-selection-cont none">
+                        <div class="vs-icons">
+                            <i class="fas fa-user pink-variant-2-color"></i>
+                            <span class="grey-variant-2-color bold">vs</span>
+                            <img src="./images/avatar-s.png" alt="bot"/>
+                        </div>
+                        <button id="single-player-selection" class="white-variant-color block default-green-bg mini-text green-functional-btn">
+                            Single Player
+                        </button>
+                        <br>
+                        <div class="vs-icons">
+                            <i class="fas fa-user pink-variant-2-color"></i>
+                            <span class="grey-variant-2-color bold">vs</span>
+                            <i class="fas fa-user pink-variant-3-color"></i>
+                        </div>
+                        <button id="multi-player-selection" class="white-variant-color block default-green-bg mini-text green-functional-btn">
+                            Multi Player
+                        </button>
+                    </div>
+                    <div class="multi-mode-selection-cont none">
+                        <br>
+                        <button id="match-creation-trigger" class="white-variant-color block default-green-bg mini-text green-functional-btn">
+                            Create Match
+                        </button>
+                        <button id="match-search-page-trigger" class="white-variant-color block default-green-bg mini-text green-functional-btn">
+                            Find Match
+                        </button>
+                    </div>
+                    <div class="match-search-page none">
+                        <p class="white-variant-2-color centered-text bold-text large-text">
+                            Search for the match using the match ID sent to you by your friend and also provide your name
+                        </p>
+                        <br/>
+                        <div class="centered-text">
+                            <input type="text" placeholder="First name" style="width: 199px; transform:translate(-3px);" class="deep-grey-bg white-variant-color input" id="first-name-input" />
+                            <br>
+                            <br>
+                            <input type="text" placeholder="Match ID" class="deep-grey-bg white-variant-color input match-id" id="match-id-input" />
+                            <button id="match-search-trigger" class="default-green-bg">
+                                <i class="fas fa-search grey-variant-color"></i>
+                            </button>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="game-board white-variant-3-color none">
+                        <div class="game-board-row">
+                            <button style="border-top-color: transparent; border-left-color: transparent;" id="game-board-btn-1"></button>
+                            <button style="border-top-color: transparent;" id="game-board-btn-2"></button>
+                            <button style="border-top-color: transparent; border-right-color: transparent;" id="game-board-btn-3"></button>
+                        </div>
+                        <div class="game-board-row">
+                            <button style="border-left-color: transparent;" id="game-board-btn-4"></button>
+                            <button id="game-board-btn-5"></button>
+                            <button style="border-right-color: transparent;" id="game-board-btn-6"></button>
+                        </div>
+                        <div class="game-board-row">
+                            <button style="border-bottom-color: transparent; border-left-color:transparent;" id="game-board-btn-7"></button>
+                            <button style="border-bottom-color: transparent;" id="game-board-btn-8"></button>
+                            <button style="border-bottom-color: transparent; border-right-color: transparent;" id="game-board-btn-9"></button>
+                        </div>
+                    </div>
+                    <div class="match-created-notifier none">
+                        <br>
+                        <br>
+                        <p class="bold-text centered-text large-text white-variant-2-color">Match Created!</p>
+                        <br>
+                        <br>
+                        <p class="bold-text mini-text white-variant-2-color centered-text">Match ID</p>
+                        <br>
+                        <div class="centered-text">
+                            <input type="text" class="deep-grey-bg white-variant-color input match-id" id="match-id-cont" disabled/>
+                            <button id="id-copy-trigger" class="default-green-bg">
+                                <i class="fas fa-copy grey-variant-color"></i>
+                            </button>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <p class="white-variant-2-color centered-text">
+                            Copy and send the match ID to your friend
+                            <br/>
+                            <br/>
+                            Your friend should find the match using the match ID
+                        </p>
+                        <br>
+                    </div>
+                    <div class="match-acceptance-outer-cont none flex-box modal-outer">
+                        <div class="modal-content deep-grey-bg white-variant-color centered-text">
+                            <br/>
+                            <p class="large-text">
+                                <i class="fas fa-bell"></i>
+                            </p>
+                            <br/>
+                            <p>
+                                <Span class="bold-text friend-name-in-notification">Ben</Span> wants to play with you!
+                            </p>
+                            <br>
+                            <br>
+                            <button id="match-acceptance-trigger" class="default-green-bg white-variant-color btn-in-modal green-functional-btn">
+                                Accept Match
+                            </button>
+                            <br>
+                            <br>
+                            <button id="match-decline-trigger" class="pink-variant-bg white-variant-color btn-in-modal green-functional-btn">
+                                Decline Match
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-awaiting-notification flex-box modal-outer none">
+                        <div class="modal-content deep-grey-bg white-variant-color centered-text">
+                            <br/>
+                            <p class="large-text">
+                                <i class="fas fa-bell"></i>
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p>
+                                Waiting for your friend to accept the match
+                            </p>
+                        </div>
+                    </div>
+                    <div class="friend-declination-of-match-notification flex-box modal-outer none">
+                        <div class="modal-content deep-grey-bg white-variant-color centered-text">
+                            <br/>
+                            <p class="large-text">
+                                <i class="fas fa-bell"></i>
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p>
+                                Your friend declined
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            /*version 1.0.0*/
+            const ws = new WebSocket("wss://ncoin.herokuapp.com/");
+            ws.onclose = () => {
+                alert("Disconnected from server\nPlease check your network connection");
+            };
+            const ripple = new Ripple();
+            const $only = e => document.querySelector(e);
+            $(document).ready(
+                () => {
+                    const playing_btns = Array.from(document.querySelectorAll(".game-board button"));
+                    const all_elems = $("*");
+                    all_elems.addClass("animate__animated");
+                    const green_btn = $(".green-functional-btn");
+                    const caution = $only("#caution");
+                    const click1 = $only("#click1");
+                    const click2 = $only("#click2");
+                    const win1 = $only("#win1");
+                    const win2 = $only("#win2");
+                    green_btn.click(
+                        e => {
+                            ripple.createRipple({
+                                "rippleParentId": e.target.id ,
+                                "foreground" : "css",
+                                "background" : "css",
+                                "time" : "css",
+                                "type" : "single",
+                                "increaseBy" : "css"
+                            });
+                        }
+                    );
+                    const comm_section = $(".comm-section");
+                    const mode_selection = $(".mode-selection-cont");
+                    const avatar_instruction = $(".avatar-greeting");
+                    const avatar = $(".avatar-in-comm-section-cont");
+                    const start_btn = $("#start-btn");
+                    const single_player_selection_btn = $("#single-player-selection");
+                    const multi_player_selection_btn = $("#multi-player-selection");
+                    const score_board = $(".score-board");
+                    const social_links = $(".social-links");
+                    const game_board = $(".game-board");
+                    let o_score_cont = $(".o-score") , x_score_cont = $(".x-score");
+                    const menu = $(".menu");
+                    const chat_toggle_btn = $(".chat-display-toggle-btn");
+                    const quit_btn = $(".quit-btn");
+                    const multi_mode_selection_cont = $(".multi-mode-selection-cont");
+                    const match_creation_trigger = $("#match-creation-trigger");
+                    const match_search_page_trigger = $("#match-search-page-trigger");
+                    const match_id_cont = $("#match-id-cont");
+                    const id_copy_trigger = $("#id-copy-trigger");
+                    const match_created_notifier = $(".match-created-notifier");
+                    const match_acceptance_trigger = $("#match-acceptance-trigger") , match_decline_trigger = $("#match-decline-trigger");
+                    const match_acceptance_outer_cont = $(".match-acceptance-outer-cont");
+                    const search_page = $(".match-search-page");
+                    const awaiting_friend_notification = $(".friend-awaiting-notification");
+                    const match_search_trigger = $("#match-search-trigger") , match_id_input = $("#match-id-input") , first_name_input = $("#first-name-input");
+                    id_copy_trigger.click(
+                        () => navigator.clipboard.writeText(match_id_cont.val())
+                    );
+                    let mode_is_multi = false;
+                    quit_btn.click(() => confirm("You are about to quit the game.\nClick Cancel to continue playing.\nClick Ok to quit the game") ? window.location.reload() : null);
+                    start_btn.click(
+                        () => {
+                            $only("#bg-sound").play();
+                            setTimeout(
+                                () => {
+                                    avatar_instruction.text("Select Game mode");
+                                    start_btn.remove();
+                                    avatar.addClass("animate__slideOutUp");
+                                    setTimeout(() => avatar.toggleClass("none") , 200);
+                                    mode_selection.toggleClass(["none","animate__slideInUp"]);
+                                }, 400
+                            );
+                        }
+                    );
+                    single_player_selection_btn.click(
+                        () => {
+                            mode_is_multi = false;
+                            create_game_environment();
+                        }
+                    );
+                    multi_player_selection_btn.click(
+                        () => {
+                            setTimeout(
+                                () => {
+                                    alert("Please make sure you have a stable network connection");
+                                    mode_is_multi = true;
+                                    avatar_instruction.text("Either you or your friend should create a match while the other finds the match");
+                                    mode_selection.toggleClass(["none","animate__slideInUp"]);
+                                    setTimeout(() => {
+                                        multi_mode_selection_cont.toggleClass(["none","animate__fadeIn"]);
+                                    } , 200);
+                                    //create_game_environment();
+                                } , 300 
+                            );
+                        }
+                    );
+                    match_creation_trigger.click(create_multiplayer_match);
+                    match_search_page_trigger.click(
+                        () => {
+                            multi_mode_selection_cont.hide("0.4s" , () => {
+                                multi_mode_selection_cont.toggleClass("none");
+                                avatar_instruction.toggleClass("none");
+                                search_page.toggleClass(["animate__slideInUp","none"]);
+                            });
+                        }
+                    );
+                    let multi_input_db = "";
+                    match_search_trigger.click(
+                        () => {
+                            (match_id_input || first_name_input).val().trim() === "" ? alert("Invalid input") : null;
+                            id = match_id_input.val();
+                            //send to d=server
+                            ws.send(JSON.stringify({
+                                match_id : match_id_input.val(),
+                                first_name : first_name_input.val() ,
+                                message_type : "match-creation"
+                            }));
+                        }
+                    );
+
+                    const game_id = [];
+                    const char_arr = ["a","s","d","f","g","h","j","k","l","m","n","b","v","c","x","z","q","w","e","r","t","y","u","i","o","p"];
+                    
+                    function process_proceed_multi_player(btn_id) {
+                        if(is_allowed_to_play && has_not_played && $("#"+btn_id).text() === "") {
+                            isHost ? $("#"+btn_id).text("X") : $("#"+btn_id).text("O");
+                            permit_not_to_play();
+                            click1.play();
+                            //send to websocket
+                            ws.send(JSON.stringify({
+                                btn_id : btn_id,
+                                match_id : id,
+                                table_name : multi_input_db
+                            }));
+                        }
+                        if(!has_not_played && !is_allowed_to_play || $("#"+btn_id).text() !== "") {
+                            caution.play();
+                        }
+                        check_win();
+                        clear_game();
+                    }
+                    
+                    ws.onmessage = data => {
+                        let message = JSON.parse(data.data);
+                        if(message.msg === "match-not-found" && message.match_id === id) {
+                            alert("Incorrect matchid")
+                        }
+                        if(message.message_type === "match-creation" && message.match_id === id && message.first_name) {
+                            if(isHost) {
+                                $(".friend-name-in-notification").text(message.first_name);
+                                match_acceptance_outer_cont.toggleClass("none");
+                            }
+                            else {
+                                awaiting_friend_notification.toggleClass("none");
+                            }
+                        }
+                        if(message.match_id === id && message.message_type === "create_environment" && message.first_name) {
+                            if(isHost) {
+                                //                        host      vs     friend
+                                multi_input_db = `${message.match_id}vs${message.first_name}`;
+                                match_acceptance_outer_cont.toggleClass("none");
+                                match_created_notifier.toggleClass("none");
+                                has_not_played = true , is_allowed_to_play = true;
+                            }
+                            else {
+                                //                        friend        vs  host
+                                multi_input_db = `${message.first_name}vs${message.match_id}`;
+                                has_not_played = false , is_allowed_to_play = false;
+                                awaiting_friend_notification.toggleClass("none");
+                                search_page.toggleClass("none");
+                            }
+                            create_game_environment();
+                        }
+                        if(message.btn_id && message.table_name && message.match_id === id) {
+                            if(message.table_name !== multi_input_db) {
+                                if(isHost) {
+                                    $("#"+message.btn_id).text("O");
+                                }
+                                else {
+                                    $("#"+message.btn_id).text("X");
+                                }
+                                permit_to_play();
+                                check_win();
+                                clear_game();
+                                click2.play();
+                            }
+                        }
+                        if(message.match_id === id && message.o_score && message.x_score) {
+                            o_score_cont.text(parseInt(message.o_score));
+                            x_score_cont.text(parseInt(message.x_score));
+                        }
+                        if(message.match_id === id && message.message_type === "friend-declined") {
+                            $(".friend-declination-of-match-notification").toggleClass("none");
+                        }
+                    };
+
+                    const random_match_id = function() {
+                        char_arr.forEach(e => game_id.push(char_arr[Math.floor(Math.random() * char_arr.length)]));
+                        return game_id.join("");
+                    };
+                    match_decline_trigger.click(
+                        () => {
+                            //notify friend
+                            ws.send(JSON.stringify({
+                                match_id : id,
+                                message_type : "friend-declined"
+                            }));
+                            window.location.reload();
+                        }
+                    );
+                    match_acceptance_trigger.click(
+                        () => {
+                            //notify other player about acceptance by drawing game env
+                            ws.send(JSON.stringify({
+                                match_id : id,
+                                first_name : $(".friend-name-in-notification").text(),
+                                message_type : "create_environment"
+                            }));
+                        }
+                    );
+                    let id = random_match_id() , isHost = false;
+                    function create_multiplayer_match() {
+                        //send info to server
+                        isHost = true;
+                        setTimeout(() => {
+                            multi_mode_selection_cont.toggleClass("animate__fadeOut");
+                            avatar_instruction.toggleClass("animate__slideOutUp");
+                            match_id_cont.val(id);
+                            ws.send(JSON.stringify({
+                                match_id : id,
+                                message_type : "matchid_insertion"
+                            }));
+                            setTimeout(() => {
+                                multi_mode_selection_cont.toggleClass("none");
+                                avatar_instruction.toggleClass("none");
+                                match_created_notifier.toggleClass("none");
+                            }, 260);
+                        },300);
+                    }
+                    function create_game_environment () {
+                        social_links.hide("0.1s" , () => {
+                            score_board.toggleClass(["none","animate__slideInDown"]);
+                            avatar_instruction.toggleClass(["bold-text","large-text"]);
+                            menu.toggleClass(["none","animate__slideInRight"]);
+                            setTimeout( () => game_board.toggleClass(["none" , "animate__slideInUp"]) , 320);
+                            if(!mode_is_multi) {
+                                playing_btns.forEach(e => e.addEventListener("click", e => process_proceed_single_player(e.target.id)));
+                                avatar_instruction.html(`
+                                <div class="vs-icons">
+                                    <i class="fas fa-user pink-variant-2-color"></i>
+                                    <span class="grey-variant-2-color bold">vs</span>
+                                    <img src="./images/avatar-s.png" alt="bot"/>
+                                </div>
+                                `);
+                            }
+                            else {
+                                playing_btns.forEach(e => e.addEventListener("click", e => process_proceed_multi_player(e.target.id)));
+                                avatar_instruction.html(`
+                                <div class="vs-icons">
+                                    <i class="fas fa-user pink-variant-2-color"></i>
+                                    <span class="grey-variant-2-color bold">vs</span>
+                                    <i class="fas fa-user pink-variant-3-color"></i>
+                                </div>
+                                `);
+                                score_board.html(`
+                                <i class="fas fa-user pink-variant-2-color"></i>
+                                <span class="white-variant-color bold x-score">0</span>
+                                <span class="white-variant-color"> : </span>
+                                <span class="white-variant-color bold o-score">0</span>
+                                <i class="fas fa-user pink-variant-3-color"></i>
+                                `);
+                                o_score_cont = $(".o-score") , x_score_cont = $(".x-score");
+                                //chat_toggle_btn.toggleClass("none");
+                            }
+                        });
+                        mode_selection.hide("0.1s");
+                    }
+                    //single player mode features and start
+                    let has_not_played = true , is_allowed_to_play = true;
+                    function process_proceed_single_player(id) {
+                        if(has_not_played && is_allowed_to_play && $("#"+id).text() === "") {
+                            $("#"+id).text("X");
+                            click1.play();
+                            permit_not_to_play();
+                            setTimeout( gideon_plays , 800);
+                        } else {
+                            warning_that_is_not_allowed_to_play()
+                        }
+                        check_win();
+                        clear_game();
+                    }
+                    function permit_to_play() {
+                        is_allowed_to_play = true;
+                        has_not_played = true;
+                    }
+                    function permit_not_to_play() {
+                        is_allowed_to_play = false;
+                        has_not_played = false;
+                    }
+                    function warning_that_is_not_allowed_to_play() {
+                        caution.play();
+                    }
+                    const AI_data_for_gideon = [
+                    [1,2,3],
+                    [1,3,2],
+                    [3,2,1],
+                    [4,5,6],
+                    [4,6,5],
+                    [6,5,4],
+                    [2,8,5],
+                    [8,5,2],
+                    [3,6,9],
+                    [3,9,6],
+                    [9,6,3],
+                    [3,5,7],
+                    [3,7,5],
+                    [7,5,3],
+                    [7,8,9],
+                    [7,9,8],
+                    [8,9,7],
+                    [1,5,9],
+                    [1,9,5],
+                    [9,5,1],
+                    [3,5,8],
+                    [3,8,5],
+                    [8,5,3],
+                    [1,5,9],
+                    [1,9,5],
+                    [9,5,1],
+                    [3,6,7],
+                    [3,9,7],
+                    [7,9,6],
+                    [1,4,7],
+                    [1,7,4],
+                    [7,4,1],
+                    [2,5,8],
+                    ];
+                    const winning_cases = [
+                    [1,2,3],
+                    [4,5,6],
+                    [7,8,9],
+                    [1,4,7],
+                    [2,5,8],
+                    [3,6,9],
+                    [1,5,9],
+                    [3,5,7]
+                    ];
+                    function gideon_plays() {
+                        let gideon_has_played = false;
+                        AI_data_for_gideon.forEach(([a,b,c]) => {
+                            //trying to win
+                            if(!gideon_has_played && playing_btns[a-1].innerText === "O" && playing_btns[b-1].innerText  === "O" && playing_btns[c-1].innerText  === "") {
+                                playing_btns[c-1].innerText = "O";
+                                gideon_has_played = true;
+                                permit_to_play();
+                            }
+                        });
+                        AI_data_for_gideon.forEach(([a,b,c]) => {
+                            //trying to defend
+                            if(!gideon_has_played && playing_btns[a-1].innerText  === "X" && playing_btns[b-1].innerText  === "X" && playing_btns[c-1].innerText  === "") {
+                                playing_btns[c-1].innerText = "O";
+                                gideon_has_played = true;
+                                permit_to_play();
+                            }
+                        });
+                        if(!gideon_has_played) {
+                            const generate_random_index = () => Math.floor(Math.random() * 9 + 1);
+                            let random_index = generate_random_index();
+                            if(playing_btns[random_index - 1].innerText  === "" && !gideon_has_played) {
+                                play_randomly(random_index);
+                            }
+                            else {
+                                random_index = generate_random_index();
+                                play_randomly(random_index);
+                            }
+                            function play_randomly(a) {
+                                if(playing_btns[random_index - 1].innerText  === "") {
+                                    playing_btns[a - 1].innerText = "O";
+                                    gideon_has_played = true;
+                                    permit_to_play();
+                                }
+                                else {
+                                    random_index = generate_random_index();
+                                    play_randomly(random_index);
+                                }
+                            }
+                        }
+                        click2.play();
+                        check_win();
+                        clear_game();
+                    }
+                    let has_won = false;
+                    function clear_game() {
+                        if(playing_btns.every(e => e.innerText !== "")) {
+                            setTimeout( () => playing_btns.forEach( e => e.innerText = ""), 400);
+                        }
+                        if(has_won) {
+                            ws.send(JSON.stringify({
+                                match_id : id,
+                                o_score : o_score_cont.text(),
+                                x_score : x_score_cont.text()
+                            }));
+                            has_won = false;
+                            setTimeout( () => playing_btns.forEach( e => e.innerText = ""), 600);
+                        }
+                    }
+                    function check_win() {
+                        winning_cases.forEach(cases => {
+                            if(cases.every(cases => playing_btns[cases-1].innerText === "X")) {
+                                x_score_cont.text(parseInt(x_score_cont.text()) + 1);
+                                has_won = true;
+                                win2.play();
+                            }
+                            if(cases.every(cases => playing_btns[cases-1].innerText === "O")) {
+                                o_score_cont.text(parseInt(o_score_cont.text()) + 1);
+                                has_won = true;
+                                win1.play();
+                            }
+                        });
+                    }
+                }
+            );
+        </script>
+    </body>
+</html>
