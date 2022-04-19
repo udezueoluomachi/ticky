@@ -32,7 +32,7 @@
     ],
     "background_color": "#BDBFC1",
     "theme_color": "#727376",
-    "start_url": "https://udezueoluomachi.github.io/ticky/",
+    "start_url": "/",
     "display": "standalone",
     "orientation": "portrait"
   }
