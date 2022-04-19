@@ -223,7 +223,6 @@
         <script type="text/javascript">
             /*version 1.0.0*/
             const ws = new WebSocket("wss://ncoin.herokuapp.com/");
-            ws.onopen = () => ws.send(JSON.stringify({connection : "keep-alive"}));
             ws.onclose = () => {
                 alert("Disconnected from server\nPlease check your network connection");
             };
@@ -366,12 +365,9 @@
                         check_win();
                         clear_game();
                     }
+                    
                     ws.onmessage = data => {
                         let message = JSON.parse(data.data);
-                        if(message.connection) {
-                            ws.send(JSON.stringify({connection : "keep-alive"}));
-                            console.log(message.connection);
-                        }
                         if(message.msg === "match-not-found" && message.match_id === id) {
                             alert("Incorrect matchid")
                         }
@@ -421,6 +417,9 @@
                         }
                         if(message.match_id === id && message.message_type === "friend-declined") {
                             $(".friend-declination-of-match-notification").toggleClass("none");
+                        }
+                        if(message.message !== "") {
+                            ws.send(JSON.stringify(message));
                         }
                     };
 
