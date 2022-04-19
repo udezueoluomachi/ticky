@@ -1,19 +1,38 @@
 {
-  "$schema": "http://json.schemastore.org/web-manifest",
-  "short_name": "Ticky",
-  "name": "Ticky",
-  "description": "Ticky is a tic-tac-toe gaming platform created by Udezue Oluomachi Chimaobi using HTML , CSS , JAVASCRIPT and NODEJS. It has both a solo mode and a multiplayer feature. You can play with friends as well as on your own against the built in bot.",
-  "scope": "/",
-  "icons": [
-    {
-      "src": "images/favicon.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    }
-  ],
-  "background_color": "#EEE",
-  "theme_color": "#1565c0",
-  "start_url": "https://udezueoluomachi.github.io/ticky/",
-  "display": "standalone",
-  "orientation": "portrait"
-}
+    "$schema": "http://json.schemastore.org/web-manifest",
+    "short_name": "Ticky",
+    "name": "Ticky",
+    "description": "Ticky is a tic-tac-toe gaming platform created by Udezue Oluomachi Chimaobi using HTML , CSS , JAVASCRIPT and NODEJS. It has both a solo mode and a multiplayer feature. You can play with friends as well as on your own against the built in bot.",
+    "scope": "/",
+    "icons": [
+        {
+            "src": "/images/favicon.png",
+            "type": "image/png", "sizes": "72x72"
+        },
+      {
+        "src": "images/favicon.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "images/favicon.png",
+        "sizes": "144x144",
+        "type": "image/jpg"
+      },
+      {
+        "src": "images/favicon.png",
+        "sizes": "192x192",
+        "type": "image/jpg"
+      },
+      {
+        "src": "images/favicon.png",
+        "sizes": "512x512",
+        "type": "image/jpg"
+      }
+    ],
+    "background_color": "#BDBFC1",
+    "theme_color": "#727376",
+    "start_url": "https://udezueoluomachi.github.io/ticky/",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
