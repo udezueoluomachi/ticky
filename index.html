@@ -231,7 +231,8 @@
         </div>
         <script type="text/javascript">
             /*version 1.0.0*/
-            const ws = new WebSocket(/*"wss://ncoin.herokuapp.com/"*/"ws://localhost:4000/");
+
+            const ws = new WebSocket("wss://ncoin.herokuapp.com/");
             ws.onopen = () => setInterval(() => ws.send(JSON.stringify({text : "please work, lol"})), 3000);
             ws.onclose = () => {
                 alert("Disconnected from server\nPlease check your network connection");
