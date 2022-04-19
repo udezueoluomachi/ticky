@@ -277,7 +277,10 @@
                     const awaiting_friend_notification = $(".friend-awaiting-notification");
                     const match_search_trigger = $("#match-search-trigger") , match_id_input = $("#match-id-input") , first_name_input = $("#first-name-input");
                     id_copy_trigger.click(
-                        () => navigator.clipboard.writeText(match_id_cont.val())
+                        () => {
+                            navigator.clipboard.writeText(match_id_cont.val());
+                            alert("Copied!");
+                        }
                     );
                     let mode_is_multi = false;
                     quit_btn.click(() => confirm("You are about to quit the game.\nClick Cancel to continue playing.\nClick Ok to quit the game") ? window.location.reload() : null);
@@ -362,7 +365,7 @@
                         check_win();
                         clear_game();
                     }
-                    
+                    setInterval(() => ws.send(json.stringify({connection : "keep-alive"})), 1000)
                     ws.onmessage = data => {
                         let message = JSON.parse(data.data);
                         if(message.msg === "match-not-found" && message.match_id === id) {
