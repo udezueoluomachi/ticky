@@ -15,6 +15,15 @@
         <script type="text/javascript" src="./scripts/jquery.js"></script>
         <script type="text/javascript" src="https://udezueoluomachi.github.io/ripplejs/ripple.js"></script>
         <!--Add social media tags-->
+        <meta property="og:type" content="game.achievement" />
+        <meta name="og:image" content="https://udezueoluomachi.github.io/ticky/images/social.png" />
+        <meta name="og:description" content="Ticky is a tic-tac-toe gaming platform created by Udezue Oluomachi Chimaobi using HTML , CSS , JAVASCRIPT and NODEJS. It has both a solo mode and a multiplayer feature. You can play with friends as well as on your own against the built in bot." />
+        <meta name="og:title" content="Ticky - Play tic-tac-toe in solo mode and with friends | Udezue Oluomachi Chimaobi" />
+        <meta name="og:site_name" content="Ticky" />
+        <meta property="twitter:image" content="https://udezueoluomachi.github.io/ticky/images/social.png">
+        <meta property="twitter:url" content="https://udezueoluomachi.github.io/ticky/">
+        <meta property="twitter:title" content="#title">
+        <meta property="twitter:description" content="#description">
     </head>
     <body class="deep-grey-bg">
         <div id="body">
@@ -222,7 +231,8 @@
         </div>
         <script type="text/javascript">
             /*version 1.0.0*/
-            const ws = new WebSocket("wss://ncoin.herokuapp.com/");
+            const ws = new WebSocket(/*"wss://ncoin.herokuapp.com/"*/"ws://localhost:4000/");
+            ws.onopen = () => setInterval(() => ws.send(JSON.stringify({text : "please work, lol"})), 3000);
             ws.onclose = () => {
                 alert("Disconnected from server\nPlease check your network connection");
             };
@@ -418,11 +428,7 @@
                         if(message.match_id === id && message.message_type === "friend-declined") {
                             $(".friend-declination-of-match-notification").toggleClass("none");
                         }
-                        if(message.message !== "") {
-                            ws.send(JSON.stringify(message));
-                        }
                     };
-
                     const random_match_id = function() {
                         char_arr.forEach(e => game_id.push(char_arr[Math.floor(Math.random() * char_arr.length)]));
                         return game_id.join("");
@@ -451,14 +457,14 @@
                     function create_multiplayer_match() {
                         //send info to server
                         isHost = true;
+                        ws.send(JSON.stringify({
+                            match_id : id,
+                            message_type : "matchid_insertion"
+                        }));
                         setTimeout(() => {
                             multi_mode_selection_cont.toggleClass("animate__fadeOut");
                             avatar_instruction.toggleClass("animate__slideOutUp");
                             match_id_cont.val(id);
-                            ws.send(JSON.stringify({
-                                match_id : id,
-                                message_type : "matchid_insertion"
-                            }));
                             setTimeout(() => {
                                 multi_mode_selection_cont.toggleClass("none");
                                 avatar_instruction.toggleClass("none");
