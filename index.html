@@ -24,6 +24,21 @@
         <meta property="twitter:url" content="https://udezueoluomachi.github.io/ticky/">
         <meta property="twitter:title" content="#title">
         <meta property="twitter:description" content="#description">
+        <!--pwa-->
+        <link rel="manifest" href="manifest.json">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function() {
+                navigator.serviceWorker
+                    .register("./scripts/service-worker.js")
+                    .then(res => console.log("service worker registered"))
+                    .catch(err => console.log("service worker not registered", err))
+                })
+            }
+          
+        </script>
     </head>
     <body class="deep-grey-bg">
         <div id="body">
