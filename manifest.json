@@ -2,15 +2,15 @@
     "$schema": "http://json.schemastore.org/web-manifest",
     "short_name": "Ticky",
     "name": "Ticky",
-    "description": "A dual mode Tic-Tac-Toe game",
+    "description": "Dual mode Tic-Tac-Toe game",
     "icons": [
         {
-            "src": "/images/logo.png",
-            "type": "image/png", "sizes": "100x48"
+            "src": "/images/icon.png",
+            "type": "image/png", "sizes": "101x101"
         }
     ],
-    "background_color": "#BDBFC1",
-    "theme_color": "#727376",
+    "background_color": "#ffffff",
+    "theme_color": "#2244dd",
     "start_url": "./index.html",
     "display": "fullscreen",
     "orientation": "portrait"
