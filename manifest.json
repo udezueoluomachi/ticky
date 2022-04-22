@@ -3,16 +3,15 @@
     "short_name": "Ticky",
     "name": "Ticky",
     "description": "Ticky is a tic-tac-toe gaming platform created by Udezue Oluomachi Chimaobi using HTML , CSS , JAVASCRIPT and NODEJS. It has both a solo mode and a multiplayer feature. You can play with friends as well as on your own against the built in bot.",
-    "scope": "/",
     "icons": [
         {
             "src": "/images/favicon.png",
-            "type": "image/png", "sizes": "any"
+            "type": "image/png", "sizes": "170x170"
         }
     ],
     "background_color": "#BDBFC1",
     "theme_color": "#727376",
-    "start_url": "/",
-    "display": "standalone",
+    "start_url": "./index.html",
+    "display": "fullscreen",
     "orientation": "portrait"
   }
