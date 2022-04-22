@@ -6,7 +6,7 @@
     "icons": [
         {
             "src": "/images/logo.png",
-            "type": "image/png", "sizes": "any"
+            "type": "image/png", "sizes": "100x48"
         }
     ],
     "background_color": "#BDBFC1",
