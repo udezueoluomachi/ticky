@@ -1,0 +1,15 @@
+{
+  "background_color": "cream",
+  "description": "A Dual mode Tic-Tac-Toe game.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "images/icon.png",
+      "sizes": "101x101",
+      "type": "image/png"
+    }
+  ],
+  "name": "Dual mode Tic-Tac-Toe",
+  "short_name": "Ticky",
+  "start_url": "./index.html"
+}
