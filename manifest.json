@@ -1,8 +1,7 @@
 {
-    "$schema": "http://json.schemastore.org/web-manifest",
     "short_name": "Ticky",
-    "name": "Ticky",
-    "description": "Dual mode Tic-Tac-Toe game",
+    "name": "Dual mode Tic-Tac-Toe",
+    "description": "A Dual mode Tic-Tac-Toe game",
     "icons": [
         {
             "src": "/images/icon.png",
