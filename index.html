@@ -250,7 +250,7 @@
             let ws = new WebSocket("wss://ticky-backend.onrender.com/");
             ws.onopen = () => setInterval(() => ws.send(JSON.stringify({text : "please work, lol"})), 3000);
             ws.onclose = () => {
-                ws = new WebSocket("wss://ticky-backend.onrender.com");
+                ws = new WebSocket("wss://ticky-backend.onrender.com/");
                 alert("Disconnected from server\nPlease check your network connection");
             };
             const ripple = new Ripple();
